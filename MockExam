@@ -1,0 +1,218 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Wallpaper
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            // Name: Joseph Makin
+            // ID: 1900492
+            // Date: 24/11/2019
+
+            string height, length, width, wallpaper;
+            double numericHeight, numericLength, numericWidth, area, total;
+
+            // Initialize the cost of each wallpaper.
+            double linerCost = 10.05;
+            double printedCost = 20.20;
+            double vinylCost = 40.60;
+            double flockCost = 85.70;
+            double foilCost = 75.50;
+            double mylarCost = 90.30;
+
+            //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\\
+
+            // Output the purpose of the program.
+            Console.WriteLine("The purpose of this program is to calculate the cost of wallpaper for an interior designer.");
+
+            // Ask the user if they would like to continue.
+            Console.Write("Would you like to continue? [Y/N]: ");
+
+            string response;
+
+            do
+            {
+                response = Console.ReadLine().ToLower();
+
+                if (response == "y")
+                {
+                    // Start program.
+                    Console.Clear();                                       
+
+                    // Prompt the user for the height of their room.
+                    Console.Write("Please enter the height (m) of your room: ");
+                    height = Console.ReadLine();
+
+                    // While the inputted height is not numeric, re-prompt the user.
+                    while (!double.TryParse(height, out numericHeight))
+                    {
+                        Console.Clear();
+                        Console.Write("The value you gave was not numeric please try again: ");
+                        height = Console.ReadLine();
+                    }
+                    numericHeight = double.Parse(height);
+
+                    Console.Clear();
+
+                    // Prompt the user for the length of their room.
+                    Console.Write("Please enter the length (m) of your room: ");
+                    length = Console.ReadLine();
+
+                    // While the inputted length is not numeric, re-prompt the user.
+                    while (!double.TryParse(length, out numericLength))
+                    {
+                        Console.Clear();
+                        Console.Write("The value you gave was not numeric please try again: ");
+                        length = Console.ReadLine();
+                    }
+                    numericLength = double.Parse(length);
+
+                    Console.Clear();
+
+                    // Prompt the user for the height of their room.
+                    Console.Write("Please enter the height (m) of your room: ");
+                    width = Console.ReadLine();
+
+                    // While the inputted width is not numeric, re-prompt the user.
+                    while (!double.TryParse(width, out numericWidth))
+                    {
+                        Console.Clear();
+                        Console.Write("The value you gave was not numeric please try again: ");
+                        width = Console.ReadLine();
+                    }
+                    numericWidth = double.Parse(width);
+
+                    Console.Clear();
+
+                    // Display the area to the user (to two decimal places).
+                    area = 2 * (numericLength * numericWidth) * numericHeight;
+                    Console.WriteLine($"The area of your room is {area:N2}m²");
+
+                    // Prompt the client to choose between one of six choices of wallpaper as shown below and accept their choice.                    
+                    Console.Write("Please enter the type of wallpaper you would like to use.");                                
+                                                          
+                    bool recognisedWallpaper;
+
+                    do
+                    {
+                        Console.Write("\n---------------------------------------------------------\n" +
+                                      $"Liner : {linerCost:C} per m²\nPrinted : {printedCost:C} per m²\nVinyl : {vinylCost:C} per m²\n" +
+                                      $"flock : {flockCost:C} per m²\nFoil : {foilCost:C} per m²\nMylar : {mylarCost:C} per m²\n\n" +
+                                      $">>> ");
+                        wallpaper = Console.ReadLine().ToLower();
+
+                        recognisedWallpaper = true;
+
+                        Console.Clear();
+
+                        switch (wallpaper)
+                        {                           
+                            case ("liner"):
+                                total = linerCost * area;
+
+                                // Display an itemised bill in a tabular format.                                
+                                Console.WriteLine($"Bill:\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Item                 Cost\n" +
+                                                  $"Liner Wallpaper      {area:N2}m² * {linerCost:C} = {area * linerCost:C}\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Total: {total:C}");
+                                break;
+
+                            case ("printed"):
+                                total = printedCost * area;
+
+                                // Display an itemised bill in a tabular format.                                
+                                Console.WriteLine($"Bill:\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Item                 Cost\n" +
+                                                  $"Printed Wallpaper      {area:N2}m² * {printedCost:C} = {area * printedCost:C}\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Total: {total:C}");
+                                break;
+
+                            case ("vinyl"):
+                                total = vinylCost * area;
+
+                                // Display an itemised bill in a tabular format.                                
+                                Console.WriteLine($"Bill:\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Item                 Cost\n" +
+                                                  $"Vinyl Wallpaper      {area:N2}m² * {vinylCost:C} = {area * vinylCost:C}\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Total: {total:C}");
+                                break;
+
+                            case ("flock"):
+                                total = flockCost * area;
+
+                                // Display an itemised bill in a tabular format.                                
+                                Console.WriteLine($"Bill:\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Item                 Cost\n" +
+                                                  $"Flock Wallpaper      {area:N2}m² * {flockCost:C} = {area * flockCost:C}\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Total: {total:C}");
+                                break;
+
+                            case ("foil"):
+                                total = (foilCost * area) + (linerCost * area);
+
+                                // Display an itemised bill in a tabular format.                                
+                                Console.WriteLine($"Bill:\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Item                 Cost\n" +
+                                                  $"Foil Wallpaper      {area:N2}m² * {foilCost:C} = {area * foilCost:C}\n" +
+                                                  $"Liner Wallpaper     {area:N2}m² * {linerCost:C} = {area * linerCost:C}\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Total: {total:C}");
+                                break;
+
+                            case ("mylar"):
+                                total = (mylarCost * area) + (linerCost * area);
+
+                                // Display an itemised bill in a tabular format.                                
+                                Console.WriteLine($"Bill:\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Item                 Cost\n" +
+                                                  $"Mylar Wallpaper      {area:N2}m² * {mylarCost:C} = {area * mylarCost:C}\n" +
+                                                  $"Liner Wallpaper      {area:N2}m² * {linerCost:C} = {area * linerCost:C}\n" +
+                                                  $"------------------------------------------------\n" +
+                                                  $"Total: {total:C}");
+                                break;
+
+                            // If the user enters a wallpaper that is specified in the switch case, re-prompt the user.
+                            default:
+                                recognisedWallpaper = false;
+                                Console.Clear();
+                                Console.Write("The wallpaper you have entered is not specified within our system. Please try again.");
+                                break;
+                        }
+
+                    } while (recognisedWallpaper == false);
+                    
+                    // Allow the user to restart the application so that they may enter measurements for other rooms and/or make different wallpaper choices.
+                    Console.Write("\nWould you like to restart the program?: ");                    
+                }
+                
+                else if ((response != "y") && (response != "n"))
+                {
+                    // If the userResponse is not "y" or "n", re-prompt the user.
+                    Console.Clear();
+                    Console.Write("The value you have entered is invalid. Please try again ['Y' = Yes | 'N' = No]: ");                    
+                }
+
+            } while (response != "n");
+
+            // End program.
+            Console.Clear();
+            Console.WriteLine("We're sorry to see you go. Come back soon!");
+        }
+    }
+}
